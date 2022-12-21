@@ -65,5 +65,20 @@ function find_cutoffs(x,y,crdist,deltas)
 }
 function cut_off_cutoffs(x,y,z,s,crdist,deltas)
 {
-    
+    let xc=[];
+    let yc=[];
+    let zc=[];
+    let ind1= find_cutoffs(x,y,crdist,delta)[0];
+    let ind2= find_cutoffs(x,y,crdist,delta)[1];
+    while (length(ind1) > 0) {
+        for(var o = ind1[0]; o < ind2[0]+1; o++) {
+            xc.push(x[o]);
+            yc.push(y[o]);
+            zc.push(z[o]);
+        }
+        ind1 = find_cutoffs(x,y,crdist,deltas)[0];
+        ind2 = find_cutoffs(x,y,crdist,deltas)[1];       
+    }
+    return [x,y,z,xc,yc,yz]
 }
+
